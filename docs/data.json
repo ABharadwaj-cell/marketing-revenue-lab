@@ -1,0 +1,223 @@
+{
+  "dataset_name": "Synthetic enterprise technology funnel",
+  "currency": "USD",
+  "period": "2026-Q3 (illustrative)",
+  "synthetic": true,
+  "marketing_channels": [
+    "Organic Search",
+    "Paid Search",
+    "Email",
+    "Webinar",
+    "Referral",
+    "Community"
+  ],
+  "channel_spend_usd": {
+    "Organic Search": 12000,
+    "Paid Search": 20000,
+    "Email": 5500,
+    "Webinar": 8000,
+    "Referral": 1000,
+    "Community": 2500
+  },
+  "leads": [
+    {
+      "id": "L001",
+      "source_channel": "Organic Search"
+    },
+    {
+      "id": "L002",
+      "source_channel": "Paid Search"
+    },
+    {
+      "id": "L003",
+      "source_channel": "Referral"
+    },
+    {
+      "id": "L004",
+      "source_channel": "Webinar"
+    },
+    {
+      "id": "L005",
+      "source_channel": "Organic Search"
+    },
+    {
+      "id": "L006",
+      "source_channel": "Sales Outbound"
+    },
+    {
+      "id": "L007",
+      "source_channel": "Email"
+    },
+    {
+      "id": "L008",
+      "source_channel": "Paid Search"
+    },
+    {
+      "id": "L009",
+      "source_channel": "Sales Outbound"
+    },
+    {
+      "id": "L010",
+      "source_channel": "Paid Search"
+    },
+    {
+      "id": "L011",
+      "source_channel": "Organic Search"
+    },
+    {
+      "id": "L012",
+      "source_channel": "Community"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "OPP001",
+      "lead_id": "L001",
+      "account": "Orion Dental Group",
+      "source_channel": "Organic Search",
+      "touch_channels": [
+        "Organic Search",
+        "Webinar"
+      ],
+      "sales_accepted": true,
+      "stage": "open",
+      "value_usd": 120000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-07-08"
+    },
+    {
+      "id": "OPP002",
+      "lead_id": "L002",
+      "account": "Northstar Clinics",
+      "source_channel": "Paid Search",
+      "touch_channels": [
+        "Paid Search",
+        "Email"
+      ],
+      "sales_accepted": true,
+      "stage": "closed_won",
+      "value_usd": 90000,
+      "recognized_revenue_usd": 30000,
+      "created_at": "2026-07-10"
+    },
+    {
+      "id": "OPP003",
+      "lead_id": "L003",
+      "account": "Ridgewell Health",
+      "source_channel": "Referral",
+      "touch_channels": [
+        "Referral",
+        "Organic Search"
+      ],
+      "sales_accepted": true,
+      "stage": "closed_lost",
+      "value_usd": 150000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-07-22"
+    },
+    {
+      "id": "OPP004",
+      "lead_id": "L004",
+      "account": "Cedar Practice Network",
+      "source_channel": "Webinar",
+      "touch_channels": [
+        "Webinar",
+        "Email"
+      ],
+      "sales_accepted": true,
+      "stage": "open",
+      "value_usd": 80000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-08-02"
+    },
+    {
+      "id": "OPP005",
+      "lead_id": "L005",
+      "account": "Springline Medical",
+      "source_channel": "Organic Search",
+      "touch_channels": [
+        "Organic Search",
+        "Email"
+      ],
+      "sales_accepted": true,
+      "stage": "closed_won",
+      "value_usd": 110000,
+      "recognized_revenue_usd": 40000,
+      "created_at": "2026-08-14"
+    },
+    {
+      "id": "OPP006",
+      "lead_id": "L006",
+      "account": "Apex Medical Partners",
+      "source_channel": "Sales Outbound",
+      "touch_channels": [
+        "Sales Outbound",
+        "Webinar"
+      ],
+      "sales_accepted": true,
+      "stage": "open",
+      "value_usd": 130000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-08-18"
+    },
+    {
+      "id": "OPP007",
+      "lead_id": "L007",
+      "account": "Pinecrest Care",
+      "source_channel": "Email",
+      "touch_channels": [
+        "Email",
+        "Paid Search"
+      ],
+      "sales_accepted": true,
+      "stage": "closed_lost",
+      "value_usd": 70000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-09-03"
+    },
+    {
+      "id": "OPP008",
+      "lead_id": "L008",
+      "account": "Silverleaf Specialty",
+      "source_channel": "Paid Search",
+      "touch_channels": [
+        "Paid Search",
+        "Webinar"
+      ],
+      "sales_accepted": true,
+      "stage": "open",
+      "value_usd": 60000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-09-08"
+    },
+    {
+      "id": "OPP009",
+      "lead_id": "L009",
+      "account": "Stonebridge Group",
+      "source_channel": "Sales Outbound",
+      "touch_channels": [
+        "Sales Outbound",
+        "Webinar"
+      ],
+      "sales_accepted": true,
+      "stage": "open",
+      "value_usd": 180000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-09-15"
+    },
+    {
+      "id": "OPP010",
+      "lead_id": "L010",
+      "account": "Unqualified Example",
+      "source_channel": "Paid Search",
+      "touch_channels": [
+        "Paid Search"
+      ],
+      "sales_accepted": false,
+      "stage": "unqualified",
+      "value_usd": 200000,
+      "recognized_revenue_usd": 0,
+      "created_at": "2026-09-20"
+    }
+  ]
+}
