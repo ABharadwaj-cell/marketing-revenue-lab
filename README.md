@@ -1,51 +1,94 @@
 # Marketing Revenue Lab
 
-A **marketing-to-revenue intelligence prototype** for CMOs, Marketing Directors, Demand Generation leaders, and Revenue Operations teams in B2B SaaS and enterprise technology.
+**Traffic is useful. Pipeline tells you whether it reached the business.**
 
-Connect synthetic leads and CRM opportunities to **marketing-sourced pipeline, marketing-influenced pipeline, open pipeline, closed-won bookings, recognized revenue, win rates, and cost per accepted opportunity**. Measures are clearly defined and avoid double-counting.
+If you run marketing alone, it's easy to spend the week improving campaigns and still struggle to answer the question a CEO asks: *How much qualified pipeline did marketing actually contribute?* Even experienced marketing leaders run into trouble when sourced, influenced, won, and recognized revenue are mixed together.
 
-## Status
+Marketing Revenue Lab is a working, deterministic analytics prototype designed to make those distinctions visible and understandable.
 
-- **Implemented:** deterministic Python metrics, data validation, synthetic fixtures, unit tests, GitHub Actions workflow, interactive static dashboard.
-- **Not yet implemented:** live CRM, production attribution, consent management, financial reconciliation, hosted model inference, or automated acquisition actions.
-- **Security:** no customer information, credentials, or confidential CERTIFY data in this public repo.
+[Explore the interactive funnel demo](https://abharadwaj-cell.github.io/marketing-revenue-lab/) · [Read the five-minute executive walkthrough](docs/START_HERE.md) · [Review the Python calculations](src/revenue.py)
 
-## Run locally
+> **Project status:** A tested Python calculation engine, synthetic lead and opportunity records, unit tests, and an interactive static dashboard. No live HubSpot/CRM integration, model inference, actual revenue attribution or deployed API. GitHub Pages must be enabled before the demo link works.
 
-Python 3.11+; no third-party packages:
+## Who this is for
+
+**Founder running marketing:** Understand whether leads turned into sales-accepted opportunities and how many of those opportunities are still open, won, or lost.
+
+**CMO / VP / Director of Marketing:** Separate sourced from influenced performance, question channel efficiency, and make investment decisions using defensible definitions.
+
+**Demand Generation and RevOps professionals:** Trace opportunity IDs to acquisition sources, recorded marketing touches, pipeline status, bookings and separately entered revenue.
+
+**Engineer / analyst:** Run the unit-tested calculation logic, validate data contracts, and prepare for a permissioned CRM and Finance integration.
+
+## Start with a business question
+
+> Paid search is generating inquiries. How much qualified pipeline is actually marketing-sourced, how much did the channel influence, and what revenue is recorded against those deals?
+
+Use the demo's **Attribution lens** selector to compare *sourced* and *influenced*. Then filter to one channel and examine the actual fictional opportunities included in each result.
+
+In the included sample, the all-channel marketing-sourced view shows **$680,000 in qualified pipeline created** from seven sales-accepted opportunities. The all-channel marketing-influenced view shows **$990,000** across nine unique opportunities because it also includes deals originally sourced through Sales that had recorded marketing touches. **Do not add those two figures.**
+
+The same sample records **$200,000 in closed-won bookings** and **$70,000 in separately recorded recognized revenue** in the sourced view. Bookings and recognized revenue are different measurements.
+
+**These figures are fictional examples, not performance results from a business.**
+
+## What the dashboard actually measures
+
+| Metric | Plain-language meaning | What not to assume |
+| --- | --- | --- |
+| Accepted opportunities | Deals Sales has accepted as real opportunities in this sample | Not all leads are qualified |
+| Marketing-sourced pipeline | Original opportunity value attached to approved marketing acquisition sources | Not necessarily current open pipeline or closed revenue |
+| Marketing-influenced pipeline | Unique accepted opportunities with any recorded marketing touch | Not exclusive credit and not incremental lift |
+| Open pipeline | Accepted opportunities currently open | Not guaranteed future revenue |
+| Closed-won bookings | Recorded value of deals marked won | Not automatically invoiced or recognized revenue |
+| Recognized revenue | Explicit separate revenue values provided in the fixture | Not derived from opportunity value |
+| Win rate | Won divided by won plus lost | Open deals are excluded |
+| Cost per accepted opportunity | Marketing channel spend divided by sourced accepted opportunity count | Not CAC, payback, or marketing ROI |
+
+A deal can appear in more than one **channel-specific influenced** view. The overall influenced figure deduplicates by opportunity. Never total the influenced channel bars as if they were mutually exclusive.
+
+## What should you do with the answer?
+
+Consider a channel producing plenty of raw leads but few accepted opportunities. The next decision may be to investigate audience targeting, landing-page promises, lead qualification, CRM routing or Sales follow-up. Reporting more traffic doesn't solve that problem.
+
+A useful marketing-to-revenue workflow is:
+
+**Acquisition source → Lead → Sales acceptance → Opportunity → Stage progress → Won/lost → Bookings → Recorded revenue.**
+
+A production system also needs campaign touches, account identity resolution, buying-group context, time windows, costs, attribution governance and Sales/Finance reconciliation before it can support company reporting.
+
+## Try it without code
+
+1. Open the [dashboard](https://abharadwaj-cell.github.io/marketing-revenue-lab/) after Pages is enabled.
+2. Choose *Marketing-sourced* and **All marketing channels**.
+3. Read the pipeline, open pipeline, bookings and recorded revenue cards.
+4. Switch to *Marketing-influenced*. Notice the larger, non-additive coverage.
+5. Filter to **Organic Search** or **Paid Search** and inspect the opportunity table.
+6. Write down which commercial decision each number can support, and which information is still missing.
+
+[The founder and executive walkthrough](docs/START_HERE.md) provides an example.
+
+## Run and inspect the engine
+
+Python 3.11+, no paid APIs or third-party Python libraries required.
 
 ```bash
 python -m unittest discover -s tests -v
 python src/revenue.py
 ```
 
-## Core definitions
+The calculation engine lives in `src/revenue.py`. The canonical synthetic dataset is `docs/data.json`, used by both the Python calculations and the static website. `tests/test_revenue.py` verifies expected numbers and rejects several bad input conditions.
 
-- **Qualified opportunity:** `sales_accepted = true`. Unaccepted records are excluded from pipeline calculations.
-- **Marketing-sourced:** the opportunity's original acquisition `source_channel` is in the approved marketing-channel list. One source per opportunity.
-- **Marketing-influenced:** at least one approved marketing channel appears in the opportunity's recorded touches, including its source when applicable. A deal can appear in several individual channel views, so **never sum influenced amounts across channels**.
-- **Qualified pipeline created:** sum of original deal values for accepted opportunities created in the snapshot period, including deals that subsequently won or lost. This is NOT today's open pipeline.
-- **Open pipeline:** current face value of accepted open opportunities.
-- **Closed-won bookings:** accepted deal values for `closed_won`. **Not recognized revenue.**
-- **Recognized revenue:** separately recorded `recognized_revenue_usd`, never derived automatically from deal value.
-- **Win rate:** won / (won + lost); open deals not in denominator.
-- **Cost per accepted opportunity:** channel spend / accepted sourced opportunity count; this is NOT CAC or ROI.
-- **Attribution vs causation:** source and touch views do not establish incremental contribution.
+## Limitations and responsibility
 
-The `fixtures/synthetic_crm.json` data is an educational example. Values are fictional and denominated in USD.
+- **No causal attribution:** a tracked touch does not prove the channel caused a deal.
+- **No live CRM or Finance source:** all numbers are sample values, and timing/identity assumptions need much more rigor before production use.
+- **Not a forecasting engine or financial ledger:** no automatic revenue recognition, CAC or return-on-investment calculation.
+- **Not an AI model:** the intentionally deterministic calculations are the trustworthy foundation an AI explanation layer would sit on top of.
+- **Public-safe:** don't commit real customer records, CRM exports, company financials or access tokens.
 
-## Static demo
+## Next build steps
 
-Enable GitHub Pages at **Settings → Pages → Deploy from a branch → main → /docs**.
-The browser dashboard loads `docs/data.json` and calculates interactive channel views without a backend. GitHub Pages is **not** a hosted CRM connector or AI inference service.
+Authorized CRM sandbox → account/contact/deal joins → source and touch provenance → funnel cohort analysis → sales handoff checks → Finance reconciliation → confidence and missing-data indicators → budget/forecast scenarios → integration with the universal Marketing OS.
 
-## Next milestones
-
-1. Connect an authorized read-only CRM sandbox.
-2. Implement canonical lifecycle stages and cross-system identity resolution.
-3. Add first-touch and campaign-touch evidence with explicit missingness.
-4. Reconcile bookings and recognized revenue against authorized Finance records.
-5. Build source/influence cohort drilldowns, forecast calibration and model evaluation.
-6. Publish normalized events into the Universal Marketing OS.
-
-No real company data should be published without documented approval.
+Related projects: [Market Intelligence MCP](https://github.com/ABharadwaj-cell/marketing-market-intelligence-mcp) and [Marketing Practice Radar](https://github.com/ABharadwaj-cell/marketing-practice-radar).
