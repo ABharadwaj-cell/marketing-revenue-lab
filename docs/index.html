@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Marketing Revenue Lab</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Marketing Revenue Lab | From leads to pipeline and revenue</title><meta name="description" content="Founder-friendly marketing attribution and pipeline demo: compare marketing-sourced and marketing-influenced opportunities, bookings and recognized revenue using fictional B2B SaaS data.">
 <style>
 :root{color-scheme:dark;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#0d1321;color:#f4f6fc}
 *{box-sizing:border-box}body{max-width:1190px;margin:auto;padding:36px 22px}h1{font-size:clamp(2rem,4vw,3rem);margin:6px 0}
@@ -18,15 +18,16 @@ select{font:inherit;padding:11px;background:#1b2a41;color:#f3f7fc;border:1px sol
 footer{margin-top:28px;font-size:13px;color:#aebdd0}
 </style></head><body>
 <div class="kicker">Universal Marketing OS · Commercial Intelligence</div>
-<h1>Marketing Revenue Lab</h1>
-<p>Explore a synthetic B2B SaaS funnel: from lead sources to sales-accepted opportunities, pipeline, bookings and separately recorded revenue. Compare source attribution with non-exclusive marketing influence.</p>
+<h1>Find out what happened after the lead came in</h1>
+<p>For founders managing marketing alone, CMOs and Revenue Operations teams. Follow fictional leads into accepted opportunities, pipeline, bookings and separately recorded revenue. The goal is to ask better investment questions, not celebrate traffic in isolation.</p>
 <div class="banner"><strong>Illustrative data only.</strong> Companies, figures and opportunities are fictional. These are deterministic calculations, not a live CRM connector or proof of incremental marketing lift.</div>
+<div class="panel" aria-label="Five minute guide"><h2>Try this in two minutes</h2><p>Start with <strong>Marketing-sourced</strong> and <strong>All marketing channels</strong>. Look at qualified pipeline, then compare bookings with recorded revenue. Switch to <strong>Marketing-influenced</strong>. The number increases because marketing also touched some deals originally sourced by Sales. These are overlapping views: <strong>never add them together</strong>.</p><p>Then select <strong>Organic Search</strong> and inspect the opportunity table. What would you need to know before increasing SEO spend? Actual sales acceptance, deal progression, timing and acquisition cost are a better starting point than clicks alone. <a href="https://github.com/ABharadwaj-cell/marketing-revenue-lab/blob/main/docs/START_HERE.md">Read the plain-English founder guide</a>.</p></div>
 <div class="controls"><label>Attribution lens<select id="view"><option value="sourced">Marketing-sourced</option><option value="influenced">Marketing-influenced</option></select></label><label>Marketing channel<select id="channel"><option value="">All marketing channels</option></select></label></div>
 <div class="cards" id="cards"></div>
 <div class="panel"><h2>Channel comparison</h2><p class="muted" id="channelNote"></p><div id="bars"></div></div>
 <div class="panel"><h2>Included opportunities</h2><p class="muted" id="info"></p><div class="table-wrap"><table><thead><tr><th>Opportunity</th><th>Account</th><th>Original source</th><th>Recorded touches</th><th>Status</th><th>Value</th><th>Recorded revenue</th></tr></thead><tbody id="rows"></tbody></table></div></div>
 <div class="panel"><h2>Why these numbers are different</h2><p><strong>Sourced</strong> assigns an opportunity to its original marketing acquisition channel. <strong>Influenced</strong> includes any sales-accepted opportunity with a recorded marketing touch, even one originally sourced by Sales. Deals can appear in multiple channel-specific influenced views. Never add influenced results across channels or combine them with sourced pipeline.</p><p><strong>Qualified pipeline created</strong> includes accepted opportunities even if later won or lost, whereas <strong>open pipeline</strong> only includes currently open deals. <strong>Closed-won bookings</strong> are not automatically recognized revenue. Cost per accepted opportunity is not CAC or marketing ROI.</p></div>
-<footer>View the <a href="https://github.com/ABharadwaj-cell/marketing-revenue-lab">repository, revenue.py calculation engine, unit tests and evidence definitions</a>.</footer>
+<footer><strong>Not a live CRM dashboard.</strong> No customer data or AI inference is connected. All amounts are synthetic and demonstrate calculation definitions, not real business performance. View the <a href="https://github.com/ABharadwaj-cell/marketing-revenue-lab">repository, revenue.py calculation engine, unit tests and evidence definitions</a>.</footer>
 <script>
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);
 const el=id=>document.getElementById(id);
