@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Reconciliation report · synthetic-purchases</title>
+<style>body{background:#f4f6f8;color:#172533;font:16px/1.55 system-ui,sans-serif;margin:0}main{max-width:1050px;margin:auto;padding:32px 20px}header,article,section{background:white;border:1px solid #dce2e8;border-radius:12px;padding:24px;margin-bottom:20px}h1{font-size:32px;line-height:1.15}h2{font-size:23px}h3{font-size:19px}.label{font-size:13px;color:#405975;overflow-wrap:anywhere}pre{background:#eef2f5;padding:16px;overflow:auto;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}td,th{text-align:left;border-bottom:1px solid #dce2e8;padding:8px 14px 8px 0;overflow-wrap:anywhere}table{width:100%}details{margin-top:16px}summary{cursor:pointer;font-weight:600}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}.card{background:#eef2f5;border-radius:8px;padding:16px}.card strong{font-size:30px;display:block}.card span{font-size:14px}@media print{article,section{break-inside:avoid}body{background:white}details>pre{display:block}}</style></head>
+<body><main><header><p class="label">LOCAL EXPORT RECONCILIATION · PREVIEW 0.1.0</p>
+<h1>What differs, and what the exports can establish</h1>
+<p>Workspace: <strong>synthetic-purchases</strong> · Workflow: purchases</p>
+<p class="label">Run b4357bd9a65727260f077f85</p>
+<p>Findings describe these supplied files. Operator-defined contracts determine what is comparable. A discrepancy alone does not identify its cause.</p></header>
+<section><h2>Result</h2><div class='cards'><div class='card'><strong>96</strong><span>Matching order IDs</span></div><div class='card'><strong>4</strong><span>Missing from observed</span></div><div class='card'><strong>0</strong><span>Unexpected observed IDs</span></div><div class='card'><strong>0</strong><span>Amount mismatches</span></div></div><table><tbody><tr><td>Export measure</td><td>Reference</td><td>Observed</td></tr><tr><td>Raw rows</td><td>100</td><td>103</td></tr><tr><td>Eligible rows</td><td>100</td><td>101</td></tr><tr><td>Duplicate extra rows</td><td>0</td><td>5</td></tr><tr><td>Rows excluded by scope</td><td>0</td><td>2</td></tr><tr><td>Valid unique orders</td><td>100</td><td>96</td></tr><tr><td>Conflicting IDs</td><td>0</td><td>0</td></tr></tbody></table><table><tbody><tr><td>Valid order amounts</td><td>USD</td></tr><tr><td>Reference</td><td>10000.00</td></tr><tr><td>Observed</td><td>9600.00</td></tr></tbody></table><details><summary>Machine-readable result</summary><pre>{
+  &quot;amount_mismatches&quot;: 0,
+  &quot;comparison_performed&quot;: true,
+  &quot;matched_orders&quot;: 96,
+  &quot;missing_orders&quot;: 4,
+  &quot;observed&quot;: {
+    &quot;conflicting_ids&quot;: 0,
+    &quot;duplicate_extra_rows&quot;: 5,
+    &quot;eligible_rows&quot;: 101,
+    &quot;excluded_rows&quot;: 2,
+    &quot;raw_rows&quot;: 103,
+    &quot;valid_unique_orders&quot;: 96
+  },
+  &quot;quarantined_ids&quot;: 0,
+  &quot;reference&quot;: {
+    &quot;conflicting_ids&quot;: 0,
+    &quot;duplicate_extra_rows&quot;: 0,
+    &quot;eligible_rows&quot;: 100,
+    &quot;excluded_rows&quot;: 0,
+    &quot;raw_rows&quot;: 100,
+    &quot;valid_unique_orders&quot;: 100
+  },
+  &quot;totals_partial&quot;: false,
+  &quot;unexpected_orders&quot;: 0,
+  &quot;valid_order_amount_totals&quot;: {
+    &quot;observed&quot;: &quot;9600.00&quot;,
+    &quot;reference&quot;: &quot;10000.00&quot;
+  }
+}
+</pre></details><table><thead><tr><th>Finding classification</th><th>Count</th></tr></thead><tbody><tr><td>confirmed processing defect</td><td>5</td></tr><tr><td>expected definition difference</td><td>1</td></tr><tr><td>unexplained variance</td><td>4</td></tr><tr><td>within tolerance</td><td>1</td></tr></tbody></table>
+<p>Counts above are findings, not a count of affected orders or a demand ranking. Use the result fields for record counts.</p></section>
+<section><h2>Definitions and provenance</h2><details><summary>Metric contracts, tolerances and input hashes</summary><pre>{
+  &quot;comparison&quot;: {
+    &quot;class&quot;: &quot;equivalent_under_conditions&quot;,
+    &quot;rationale&quot;: &quot;Synthetic exports with explicitly declared definitions and scope.&quot;
+  },
+  &quot;contracts&quot;: {
+    &quot;observed&quot;: {
+      &quot;aggregation&quot;: &quot;records&quot;,
+      &quot;attribution&quot;: &quot;none&quot;,
+      &quot;bot_policy&quot;: &quot;not applicable&quot;,
+      &quot;complete&quot;: true,
+      &quot;consent_policy&quot;: &quot;not applicable&quot;,
+      &quot;currency&quot;: &quot;USD&quot;,
+      &quot;definition&quot;: &quot;One completed production order per immutable order ID; gross amount before refunds&quot;,
+      &quot;end_exclusive&quot;: &quot;2026-09-02&quot;,
+      &quot;exported_at&quot;: &quot;2026-09-06T00:00:00Z&quot;,
+      &quot;filters&quot;: {
+        &quot;environment&quot;: &quot;production&quot;,
+        &quot;status&quot;: &quot;completed&quot;
+      },
+      &quot;grain&quot;: &quot;record&quot;,
+      &quot;mature_after_hours&quot;: 24,
+      &quot;metric_id&quot;: &quot;completed_orders&quot;,
+      &quot;native_warnings&quot;: [],
+      &quot;project_id&quot;: &quot;synthetic-shop&quot;,
+      &quot;source&quot;: &quot;observed purchase export&quot;,
+      &quot;start&quot;: &quot;2026-09-01&quot;,
+      &quot;timezone&quot;: &quot;UTC&quot;,
+      &quot;tracking&quot;: &quot;order-ID keyed completed transaction&quot;,
+      &quot;unit&quot;: &quot;money&quot;,
+      &quot;version&quot;: 1
+    },
+    &quot;reference&quot;: {
+      &quot;aggregation&quot;: &quot;records&quot;,
+      &quot;attribution&quot;: &quot;none&quot;,
+      &quot;bot_policy&quot;: &quot;not applicable&quot;,
+      &quot;complete&quot;: true,
+      &quot;consent_policy&quot;: &quot;not applicable&quot;,
+      &quot;currency&quot;: &quot;USD&quot;,
+      &quot;definition&quot;: &quot;One completed production order per immutable order ID; gross amount before refunds&quot;,
+      &quot;end_exclusive&quot;: &quot;2026-09-02&quot;,
+      &quot;exported_at&quot;: &quot;2026-09-06T00:00:00Z&quot;,
+      &quot;filters&quot;: {
+        &quot;environment&quot;: &quot;production&quot;,
+        &quot;status&quot;: &quot;completed&quot;
+      },
+      &quot;grain&quot;: &quot;record&quot;,
+      &quot;mature_after_hours&quot;: 24,
+      &quot;metric_id&quot;: &quot;completed_orders&quot;,
+      &quot;native_warnings&quot;: [],
+      &quot;project_id&quot;: &quot;synthetic-shop&quot;,
+      &quot;source&quot;: &quot;reference order export&quot;,
+      &quot;start&quot;: &quot;2026-09-01&quot;,
+      &quot;timezone&quot;: &quot;UTC&quot;,
+      &quot;tracking&quot;: &quot;order-ID keyed completed transaction&quot;,
+      &quot;unit&quot;: &quot;money&quot;,
+      &quot;version&quot;: 1
+    }
+  },
+  &quot;input_sha256&quot;: {
+    &quot;config.json&quot;: &quot;d2429a9b52c9afc21a8d2be8155ba55da9d1b81ddc53be7845ebd31bd7cef704&quot;,
+    &quot;observed.contract.json&quot;: &quot;58dca42662181d1fea1e4d1ddf3f8d1f95f7554957bd1e1c928e9ab7df1d760d&quot;,
+    &quot;observed.csv&quot;: &quot;aafeca5381892207e65e73b9cb55294d99607be74f9536c8311e5e7e63461854&quot;,
+    &quot;reference.contract.json&quot;: &quot;a12aa3395699c90b275031ea63aca9ee1f67ad766ff18d5de0e460b65d13bdb0&quot;,
+    &quot;reference.csv&quot;: &quot;68e2bf451afbf7c320e2f03de44b940dfc7968c90c124ad71c013992b2b0dae0&quot;
+  },
+  &quot;tolerance&quot;: {
+    &quot;absolute&quot;: &quot;0.01&quot;,
+    &quot;relative&quot;: &quot;0&quot;
+  }
+}
+</pre></details>
+<p>CSV line references point to the preserved <code>inputs/reference.csv</code> or <code>inputs/observed.csv</code> snapshot. Numeric values in JSON are decimal strings to preserve precision.</p></section>
+<h2>Evidence and next checks</h2><article><p class='label'>F00001 · PUR_DUPLICATE · confirmed processing defect</p><h3>observed: duplicate order rows</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;extra_rows&quot;: 1,
+  &quot;lines&quot;: [
+    2,
+    98
+  ],
+  &quot;order_id&quot;: &quot;order-001&quot;,
+  &quot;role&quot;: &quot;observed&quot;
+}
+</pre></details><p><strong>Next check:</strong> Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.</p></article><article><p class='label'>F00002 · PUR_DUPLICATE · confirmed processing defect</p><h3>observed: duplicate order rows</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;extra_rows&quot;: 1,
+  &quot;lines&quot;: [
+    3,
+    99
+  ],
+  &quot;order_id&quot;: &quot;order-002&quot;,
+  &quot;role&quot;: &quot;observed&quot;
+}
+</pre></details><p><strong>Next check:</strong> Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.</p></article><article><p class='label'>F00003 · PUR_DUPLICATE · confirmed processing defect</p><h3>observed: duplicate order rows</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;extra_rows&quot;: 1,
+  &quot;lines&quot;: [
+    4,
+    100
+  ],
+  &quot;order_id&quot;: &quot;order-003&quot;,
+  &quot;role&quot;: &quot;observed&quot;
+}
+</pre></details><p><strong>Next check:</strong> Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.</p></article><article><p class='label'>F00004 · PUR_DUPLICATE · confirmed processing defect</p><h3>observed: duplicate order rows</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;extra_rows&quot;: 1,
+  &quot;lines&quot;: [
+    5,
+    101
+  ],
+  &quot;order_id&quot;: &quot;order-004&quot;,
+  &quot;role&quot;: &quot;observed&quot;
+}
+</pre></details><p><strong>Next check:</strong> Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.</p></article><article><p class='label'>F00005 · PUR_DUPLICATE · confirmed processing defect</p><h3>observed: duplicate order rows</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;extra_rows&quot;: 1,
+  &quot;lines&quot;: [
+    6,
+    102
+  ],
+  &quot;order_id&quot;: &quot;order-005&quot;,
+  &quot;role&quot;: &quot;observed&quot;
+}
+</pre></details><p><strong>Next check:</strong> Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.</p></article><article><p class='label'>F00006 · PUR_EXCLUDED · expected definition difference</p><h3>observed: rows excluded by explicit scope</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;role&quot;: &quot;observed&quot;,
+  &quot;rows&quot;: [
+    {
+      &quot;line&quot;: 103,
+      &quot;order_id&quot;: &quot;test-1&quot;,
+      &quot;reasons&quot;: [
+        &quot;environment&quot;
+      ]
+    },
+    {
+      &quot;line&quot;: 104,
+      &quot;order_id&quot;: &quot;test-2&quot;,
+      &quot;reasons&quot;: [
+        &quot;environment&quot;
+      ]
+    }
+  ]
+}
+</pre></details><p><strong>Next check:</strong> Check that completed/production and period filters reflect the intended decision.</p></article><article><p class='label'>F00007 · PUR_MISSING · unexplained variance</p><h3>order-097</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;order_id&quot;: &quot;order-097&quot;,
+  &quot;role&quot;: &quot;reference&quot;,
+  &quot;row&quot;: {
+    &quot;amount&quot;: &quot;100.00&quot;,
+    &quot;line&quot;: 98,
+    &quot;signature&quot;: [
+      &quot;2026-09-01T12:00:00+00:00&quot;,
+      &quot;100.00&quot;,
+      &quot;USD&quot;
+    ]
+  }
+}
+</pre></details><p><strong>Next check:</strong> Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.</p></article><article><p class='label'>F00008 · PUR_MISSING · unexplained variance</p><h3>order-098</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;order_id&quot;: &quot;order-098&quot;,
+  &quot;role&quot;: &quot;reference&quot;,
+  &quot;row&quot;: {
+    &quot;amount&quot;: &quot;100.00&quot;,
+    &quot;line&quot;: 99,
+    &quot;signature&quot;: [
+      &quot;2026-09-01T12:00:00+00:00&quot;,
+      &quot;100.00&quot;,
+      &quot;USD&quot;
+    ]
+  }
+}
+</pre></details><p><strong>Next check:</strong> Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.</p></article><article><p class='label'>F00009 · PUR_MISSING · unexplained variance</p><h3>order-099</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;order_id&quot;: &quot;order-099&quot;,
+  &quot;role&quot;: &quot;reference&quot;,
+  &quot;row&quot;: {
+    &quot;amount&quot;: &quot;100.00&quot;,
+    &quot;line&quot;: 100,
+    &quot;signature&quot;: [
+      &quot;2026-09-01T12:00:00+00:00&quot;,
+      &quot;100.00&quot;,
+      &quot;USD&quot;
+    ]
+  }
+}
+</pre></details><p><strong>Next check:</strong> Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.</p></article><article><p class='label'>F00010 · PUR_MISSING · unexplained variance</p><h3>order-100</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;order_id&quot;: &quot;order-100&quot;,
+  &quot;role&quot;: &quot;reference&quot;,
+  &quot;row&quot;: {
+    &quot;amount&quot;: &quot;100.00&quot;,
+    &quot;line&quot;: 101,
+    &quot;signature&quot;: [
+      &quot;2026-09-01T12:00:00+00:00&quot;,
+      &quot;100.00&quot;,
+      &quot;USD&quot;
+    ]
+  }
+}
+</pre></details><p><strong>Next check:</strong> Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.</p></article><article><p class='label'>F00011 · PUR_MATCHED · within tolerance</p><h3>Orders with matching IDs</h3><details><summary>View source rows and measured evidence</summary><pre>{
+  &quot;amounts_within_tolerance&quot;: 96,
+  &quot;matched_ids&quot;: 96
+}
+</pre></details><p><strong>Next check:</strong> Matching IDs establish record overlap; they do not establish attribution or causal lift.</p></article>
+<section><h2>Limits</h2><ul><li>Contracts are operator assertions, not independently verified source settings.</li><li>CSV exports only. No live connectors, identity inference, FX conversion or causal attribution.</li><li>A reference export is an asserted comparison baseline, not independently established ground truth.</li></ul><p>Raw exports and record IDs remain in this local run folder. Review its contents before sharing.</p></section>
+</main></body></html>

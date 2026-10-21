@@ -6,7 +6,9 @@ The demo uses a fictional B2B SaaS business and ten fictional opportunity record
 
 ## If you're the founder and the only marketer
 
-Start with the [demo dashboard](https://abharadwaj-cell.github.io/marketing-revenue-lab/).
+From the repository root, run `python -m http.server 8000 --bind 127.0.0.1 --directory docs` and open `http://127.0.0.1:8000/` for the local synthetic dashboard. The project is in private development.
+
+If your immediate question is why two analytics reports disagree, use the separate [analytics reconciliation operating guide](reconciliation/README.md). It has a runnable CSV example and a synthetic purchase report, with exact input contracts and limitations.
 
 1. Leave the lens on **Marketing-sourced**, all channels. You're looking at deals whose original acquisition channel was marketing.
 2. Notice **qualified pipeline created**. It is not the same as the amount currently open or the amount won.
@@ -66,3 +68,4 @@ That is why this project is intended as a **decision aid**, not a leaderboard fo
 A mature system should let a founder or CMO trace relevant marketing effort to *qualified business outcomes*, distinguish what marketing controls from what it influences, and make better investment decisions without inventing return on spend.
 
 The current demo establishes the definitions and calculation behavior that such a system would rely on.
+

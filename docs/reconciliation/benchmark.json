@@ -1,0 +1,32 @@
+{
+  "engine_version": "0.1.0",
+  "engine_fingerprint": "a117ad8ca71718ec3c6497dfcd57060cdfaa3202261a4b03ff146b962b753d01",
+  "measured_at": "2026-10-21T21:03:03.494525+00:00",
+  "python": "3.12.14",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "total_input_rows": 400000,
+  "runs": [
+    {
+      "workflow": "aggregate",
+      "unit": "count",
+      "input_rows": 200000,
+      "seconds_ingest_analyze_render_verify": 2.4429,
+      "validated_exception_periods": 1
+    },
+    {
+      "workflow": "aggregate",
+      "unit": "money",
+      "input_rows": 200000,
+      "seconds_ingest_analyze_render_verify": 2.0367,
+      "validated_exception_periods": 1
+    }
+  ],
+  "total_seconds": 4.4796,
+  "peak_process_rss_mib": 146.88,
+  "notes": [
+    "Synthetic daily count and money exports, 100000 rows each at the default setting.",
+    "CSV generation excluded from elapsed time; process peak RSS includes generation and both runs.",
+    "One exception per pair. Exception-heavy HTML reports and purchase-ID workloads were not benchmarked.",
+    "This environment is not the proposed 8 GB reference laptop. No manual-work time savings or superiority claim was measured."
+  ]
+}

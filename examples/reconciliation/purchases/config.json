@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "workspace": "synthetic-purchases",
+  "workflow": "purchases",
+  "comparison": {
+    "class": "equivalent_under_conditions",
+    "rationale": "Synthetic exports with explicitly declared definitions and scope."
+  },
+  "tolerance": {
+    "absolute": "0.01",
+    "relative": "0"
+  },
+  "reference": {
+    "contract": "reference.contract.json",
+    "csv": "reference.csv"
+  },
+  "observed": {
+    "contract": "observed.contract.json",
+    "csv": "observed.csv"
+  }
+}

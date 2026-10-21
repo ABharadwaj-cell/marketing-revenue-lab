@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "source": "observed purchase export",
+  "project_id": "synthetic-shop",
+  "metric_id": "completed_orders",
+  "definition": "One completed production order per immutable order ID; gross amount before refunds",
+  "aggregation": "records",
+  "unit": "money",
+  "currency": "USD",
+  "timezone": "UTC",
+  "grain": "record",
+  "start": "2026-09-01",
+  "end_exclusive": "2026-09-02",
+  "filters": {
+    "status": "completed",
+    "environment": "production"
+  },
+  "attribution": "none",
+  "tracking": "order-ID keyed completed transaction",
+  "bot_policy": "not applicable",
+  "consent_policy": "not applicable",
+  "exported_at": "2026-09-06T00:00:00Z",
+  "mature_after_hours": 24,
+  "complete": true,
+  "native_warnings": []
+}

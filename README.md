@@ -6,9 +6,19 @@ If you run marketing alone, it's easy to spend the week improving campaigns and 
 
 Marketing Revenue Lab is a working, deterministic analytics prototype designed to make those distinctions visible and understandable.
 
-[Explore the interactive funnel demo](https://abharadwaj-cell.github.io/marketing-revenue-lab/) · [Read the five-minute executive walkthrough](docs/START_HERE.md) · [Review the Python calculations](src/revenue.py)
+[Read the five-minute executive walkthrough](docs/START_HERE.md) · [Run the reconciliation preview](docs/reconciliation/README.md) · [Review the Python calculations](src/revenue.py)
 
-> **Project status:** A tested Python calculation engine, synthetic lead and opportunity records, unit tests, and an interactive static dashboard. No live HubSpot/CRM integration, model inference, actual revenue attribution or deployed API. GitHub Pages must be enabled before the demo link works.
+> **Project status:** Private development. A tested pipeline calculation engine, an interactive synthetic dashboard, and a local CSV reconciliation preview. No live analytics/CRM integration, model inference, actual revenue attribution, deployed API or public site.
+
+## New: explain conflicting analytics exports
+
+The reconciliation preview compares explicitly defined aggregate metrics or matches tracked purchases against reference orders. It blocks incompatible definitions, preserves original input bytes, checks duplicates and missing records, and saves HTML, CSV and JSON evidence locally.
+
+```bash
+python -m reconciliation --config examples/reconciliation/purchases/config.json --output .private/reconciliation
+```
+
+The synthetic example has 100 reference orders and 103 observed rows. After finding five extra duplicate rows and excluding two test rows, it identifies 96 matches and four missing orders. [Read the operating guide, input contracts, limits and measured validation](docs/reconciliation/README.md). This module is separate from the CRM pipeline example below.
 
 ## Who this is for
 
@@ -59,7 +69,7 @@ A production system also needs campaign touches, account identity resolution, bu
 
 ## Try it without code
 
-1. Open the [dashboard](https://abharadwaj-cell.github.io/marketing-revenue-lab/) after Pages is enabled.
+1. Run `python -m http.server 8000 --bind 127.0.0.1 --directory docs` and open `http://127.0.0.1:8000/` locally. This serves the synthetic dashboard only.
 2. Choose *Marketing-sourced* and **All marketing channels**.
 3. Read the pipeline, open pipeline, bookings and recorded revenue cards.
 4. Switch to *Marketing-influenced*. Notice the larger, non-additive coverage.
@@ -85,10 +95,11 @@ The calculation engine lives in `src/revenue.py`. The canonical synthetic datase
 - **No live CRM or Finance source:** all numbers are sample values, and timing/identity assumptions need much more rigor before production use.
 - **Not a forecasting engine or financial ledger:** no automatic revenue recognition, CAC or return-on-investment calculation.
 - **Not an AI model:** the intentionally deterministic calculations are the trustworthy foundation an AI explanation layer would sit on top of.
-- **Public-safe:** don't commit real customer records, CRM exports, company financials or access tokens.
+- **Synthetic repository data only:** don't commit real customer records, CRM exports, company financials or access tokens. Local reconciliation runs retain raw input snapshots; keep actual exports under `.private/`.
 
 ## Next build steps
 
 Authorized CRM sandbox → account/contact/deal joins → source and touch provenance → funnel cohort analysis → sales handoff checks → Finance reconciliation → confidence and missing-data indicators → budget/forecast scenarios → integration with the universal Marketing OS.
 
 Related projects: [Market Intelligence MCP](https://github.com/ABharadwaj-cell/marketing-market-intelligence-mcp) and [Marketing Practice Radar](https://github.com/ABharadwaj-cell/marketing-practice-radar).
+

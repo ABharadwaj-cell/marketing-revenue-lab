@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Metric contract v1",
+  "description": "Structural schema. The runner also validates calendar order, timezone availability, maturity and workflow-specific constraints.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "source",
+    "project_id",
+    "metric_id",
+    "definition",
+    "aggregation",
+    "unit",
+    "currency",
+    "timezone",
+    "grain",
+    "start",
+    "end_exclusive",
+    "filters",
+    "attribution",
+    "tracking",
+    "bot_policy",
+    "consent_policy",
+    "exported_at",
+    "mature_after_hours",
+    "complete",
+    "native_warnings"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "const": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "metric_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "aggregation": {
+      "enum": [
+        "sum",
+        "distinct",
+        "ratio",
+        "records"
+      ]
+    },
+    "unit": {
+      "enum": [
+        "count",
+        "money",
+        "ratio"
+      ]
+    },
+    "currency": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      ]
+    },
+    "timezone": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "grain": {
+      "enum": [
+        "day",
+        "period",
+        "record"
+      ]
+    },
+    "start": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "end_exclusive": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "attribution": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "tracking": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "bot_policy": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "consent_policy": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "exported_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "mature_after_hours": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 8760
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "native_warnings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "unit": {
+            "const": "money"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "currency": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}$"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "currency": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "aggregation": {
+            "const": "ratio"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "unit": {
+            "const": "ratio"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "unit": {
+            "enum": [
+              "count",
+              "money"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "aggregation": {
+            "const": "distinct"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "unit": {
+            "const": "count"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "aggregation": {
+            "const": "records"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "unit": {
+            "const": "money"
+          },
+          "grain": {
+            "const": "record"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "grain": {
+            "enum": [
+              "day",
+              "period"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

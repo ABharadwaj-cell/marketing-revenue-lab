@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "workspace": "synthetic-definitions",
+  "workflow": "aggregate",
+  "comparison": {
+    "class": "related_not_interchangeable",
+    "rationale": "Synthetic exports with explicitly declared definitions and scope."
+  },
+  "tolerance": {
+    "absolute": "1",
+    "relative": "0.01"
+  },
+  "reference": {
+    "contract": "reference.contract.json",
+    "csv": "reference.csv"
+  },
+  "observed": {
+    "contract": "observed.contract.json",
+    "csv": "observed.csv"
+  }
+}

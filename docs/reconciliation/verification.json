@@ -1,0 +1,120 @@
+{
+  "cli_checks": [
+    {
+      "bundle": "aggregate",
+      "cli_exit": 0,
+      "input_sha256": {
+        "config.json": "2fbb540a0eff623f5a62adf2220867991a2c5b344587cc4494eeb55994a7eec9",
+        "observed.contract.json": "e2f11b9a530416dba1939b089857d4908f07d57fd4be913677ea176f529b25ce",
+        "observed.csv": "30b3a5ac8e208a8cbfbb3880678c1b7de724e55d53d676aceec9d19605ac83a7",
+        "reference.contract.json": "4d761e8429e412839001f2d2eb34ef39d8837b1a63f0ebd23e1014d6546b282f",
+        "reference.csv": "a4e1a10180388276ea04f3a05fb9f214bc2b816c3dcdbb961ac5058a1b848f43"
+      },
+      "manifest_files_verified": 8,
+      "run_id": "a3c1d30619962eb720e44f72",
+      "summary": {
+        "comparison_performed": true,
+        "missing_or_undefined_periods": 0,
+        "native_totals": {
+          "observed": {
+            "method": "sum",
+            "value": "217"
+          },
+          "reference": {
+            "method": "sum",
+            "value": "220"
+          }
+        },
+        "outside_tolerance_periods": 1,
+        "period_total_variance": {
+          "absolute_relative_delta": "0.013636363636363636363636363636363636363636363636363636363636363636363636363636364",
+          "allowed_absolute_delta": "2.20",
+          "delta": "-3",
+          "observed": "217",
+          "reference": "220",
+          "within_tolerance": false
+        },
+        "periods_compared": 3,
+        "within_tolerance_periods": 2
+      }
+    },
+    {
+      "bundle": "definitions",
+      "cli_exit": 0,
+      "input_sha256": {
+        "config.json": "e55c04c477b2d637050a91579f19b0113388f9fdd71ce9a8d916f9eb5e51c1ed",
+        "observed.contract.json": "c38f3f252de47b3e35a1d6de68aa9dfc2759bd288f1d622bda413331c259bf82",
+        "observed.csv": "30b3a5ac8e208a8cbfbb3880678c1b7de724e55d53d676aceec9d19605ac83a7",
+        "reference.contract.json": "4d761e8429e412839001f2d2eb34ef39d8837b1a63f0ebd23e1014d6546b282f",
+        "reference.csv": "a4e1a10180388276ea04f3a05fb9f214bc2b816c3dcdbb961ac5058a1b848f43"
+      },
+      "manifest_files_verified": 8,
+      "run_id": "c85f289891d864fe59886c29",
+      "summary": {
+        "comparison_performed": false,
+        "reason": "Declared class or semantic scope blocks numerical reconciliation"
+      }
+    },
+    {
+      "bundle": "purchases",
+      "cli_exit": 0,
+      "input_sha256": {
+        "config.json": "d2429a9b52c9afc21a8d2be8155ba55da9d1b81ddc53be7845ebd31bd7cef704",
+        "observed.contract.json": "58dca42662181d1fea1e4d1ddf3f8d1f95f7554957bd1e1c928e9ab7df1d760d",
+        "observed.csv": "aafeca5381892207e65e73b9cb55294d99607be74f9536c8311e5e7e63461854",
+        "reference.contract.json": "a12aa3395699c90b275031ea63aca9ee1f67ad766ff18d5de0e460b65d13bdb0",
+        "reference.csv": "68e2bf451afbf7c320e2f03de44b940dfc7968c90c124ad71c013992b2b0dae0"
+      },
+      "manifest_files_verified": 8,
+      "run_id": "b4357bd9a65727260f077f85",
+      "summary": {
+        "amount_mismatches": 0,
+        "comparison_performed": true,
+        "matched_orders": 96,
+        "missing_orders": 4,
+        "observed": {
+          "conflicting_ids": 0,
+          "duplicate_extra_rows": 5,
+          "eligible_rows": 101,
+          "excluded_rows": 2,
+          "raw_rows": 103,
+          "valid_unique_orders": 96
+        },
+        "quarantined_ids": 0,
+        "reference": {
+          "conflicting_ids": 0,
+          "duplicate_extra_rows": 0,
+          "eligible_rows": 100,
+          "excluded_rows": 0,
+          "raw_rows": 100,
+          "valid_unique_orders": 100
+        },
+        "totals_partial": false,
+        "unexpected_orders": 0,
+        "valid_order_amount_totals": {
+          "observed": "9600.00",
+          "reference": "10000.00"
+        }
+      }
+    }
+  ],
+  "engine_fingerprint": "a117ad8ca71718ec3c6497dfcd57060cdfaa3202261a4b03ff146b962b753d01",
+  "engine_version": "0.1.0",
+  "not_verified": [
+    "Live providers and their native export mappings",
+    "Provider-verified metric contracts",
+    "Onboarding time and manual time savings",
+    "8 GB reference laptop performance",
+    "Browser visual layout at multiple viewport sizes"
+  ],
+  "python": "3.12.14",
+  "sample_report": "docs/reconciliation/sample/synthetic-purchases/b4357bd9a65727260f077f85/report.html",
+  "seconds": 0.5751,
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "run": 53,
+    "skipped": 0
+  },
+  "verified_at": "2026-10-21T21:02:57.663243+00:00"
+}
