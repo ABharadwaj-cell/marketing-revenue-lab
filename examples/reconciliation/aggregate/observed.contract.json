@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "source": "observed synthetic export",
+  "project_id": "synthetic-shop",
+  "metric_id": "pageviews",
+  "definition": "Pageview events after the declared filters",
+  "aggregation": "sum",
+  "unit": "count",
+  "currency": null,
+  "timezone": "UTC",
+  "grain": "day",
+  "start": "2026-09-01",
+  "end_exclusive": "2026-09-04",
+  "filters": {
+    "environment": "production"
+  },
+  "attribution": "none",
+  "tracking": "pageview event",
+  "bot_policy": "exclude known bots",
+  "consent_policy": "consented events only",
+  "exported_at": "2026-09-06T00:00:00Z",
+  "mature_after_hours": 24,
+  "complete": true,
+  "native_warnings": []
+}

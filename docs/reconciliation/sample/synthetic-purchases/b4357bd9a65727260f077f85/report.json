@@ -1,0 +1,334 @@
+{
+  "classifications": {
+    "confirmed_processing_defect": 5,
+    "expected_definition_difference": 1,
+    "unexplained_variance": 4,
+    "within_tolerance": 1
+  },
+  "comparison": {
+    "class": "equivalent_under_conditions",
+    "rationale": "Synthetic exports with explicitly declared definitions and scope."
+  },
+  "contracts": {
+    "observed": {
+      "aggregation": "records",
+      "attribution": "none",
+      "bot_policy": "not applicable",
+      "complete": true,
+      "consent_policy": "not applicable",
+      "currency": "USD",
+      "definition": "One completed production order per immutable order ID; gross amount before refunds",
+      "end_exclusive": "2026-09-02",
+      "exported_at": "2026-09-06T00:00:00Z",
+      "filters": {
+        "environment": "production",
+        "status": "completed"
+      },
+      "grain": "record",
+      "mature_after_hours": 24,
+      "metric_id": "completed_orders",
+      "native_warnings": [],
+      "project_id": "synthetic-shop",
+      "source": "observed purchase export",
+      "start": "2026-09-01",
+      "timezone": "UTC",
+      "tracking": "order-ID keyed completed transaction",
+      "unit": "money",
+      "version": 1
+    },
+    "reference": {
+      "aggregation": "records",
+      "attribution": "none",
+      "bot_policy": "not applicable",
+      "complete": true,
+      "consent_policy": "not applicable",
+      "currency": "USD",
+      "definition": "One completed production order per immutable order ID; gross amount before refunds",
+      "end_exclusive": "2026-09-02",
+      "exported_at": "2026-09-06T00:00:00Z",
+      "filters": {
+        "environment": "production",
+        "status": "completed"
+      },
+      "grain": "record",
+      "mature_after_hours": 24,
+      "metric_id": "completed_orders",
+      "native_warnings": [],
+      "project_id": "synthetic-shop",
+      "source": "reference order export",
+      "start": "2026-09-01",
+      "timezone": "UTC",
+      "tracking": "order-ID keyed completed transaction",
+      "unit": "money",
+      "version": 1
+    }
+  },
+  "engine_fingerprint": "a117ad8ca71718ec3c6497dfcd57060cdfaa3202261a4b03ff146b962b753d01",
+  "engine_source_sha256": {
+    "__init__.py": "db6a2d848d303e577896b46f7ed67ea942dc6747a24dcea1cec29bcdf7766d9f",
+    "__main__.py": "d7f81375064d6067f18e216038e0d011762e02bc8eedc909c6e37dc89096d1b6",
+    "contracts.py": "19ad918a04c2811c5c602aae734328dc1677c419a29eed6127ce2a14d8e9d81d",
+    "engine.py": "76559f80dabbba04f3b270e8aece3adc5a59c7c0d37df715079fa1319345e0da",
+    "reports.py": "dc41fcaa9b008553253cb0bfcec08c59c0aa3de75b4345321cb2f964513bad2b"
+  },
+  "engine_version": "0.1.0",
+  "findings": [
+    {
+      "classification": "confirmed_processing_defect",
+      "evidence": {
+        "extra_rows": 1,
+        "lines": [
+          2,
+          98
+        ],
+        "order_id": "order-001",
+        "role": "observed"
+      },
+      "id": "F00001",
+      "next_check": "Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.",
+      "rule": "PUR_DUPLICATE",
+      "severity": "warning",
+      "subject": "observed: duplicate order rows"
+    },
+    {
+      "classification": "confirmed_processing_defect",
+      "evidence": {
+        "extra_rows": 1,
+        "lines": [
+          3,
+          99
+        ],
+        "order_id": "order-002",
+        "role": "observed"
+      },
+      "id": "F00002",
+      "next_check": "Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.",
+      "rule": "PUR_DUPLICATE",
+      "severity": "warning",
+      "subject": "observed: duplicate order rows"
+    },
+    {
+      "classification": "confirmed_processing_defect",
+      "evidence": {
+        "extra_rows": 1,
+        "lines": [
+          4,
+          100
+        ],
+        "order_id": "order-003",
+        "role": "observed"
+      },
+      "id": "F00003",
+      "next_check": "Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.",
+      "rule": "PUR_DUPLICATE",
+      "severity": "warning",
+      "subject": "observed: duplicate order rows"
+    },
+    {
+      "classification": "confirmed_processing_defect",
+      "evidence": {
+        "extra_rows": 1,
+        "lines": [
+          5,
+          101
+        ],
+        "order_id": "order-004",
+        "role": "observed"
+      },
+      "id": "F00004",
+      "next_check": "Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.",
+      "rule": "PUR_DUPLICATE",
+      "severity": "warning",
+      "subject": "observed: duplicate order rows"
+    },
+    {
+      "classification": "confirmed_processing_defect",
+      "evidence": {
+        "extra_rows": 1,
+        "lines": [
+          6,
+          102
+        ],
+        "order_id": "order-005",
+        "role": "observed"
+      },
+      "id": "F00005",
+      "next_check": "Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.",
+      "rule": "PUR_DUPLICATE",
+      "severity": "warning",
+      "subject": "observed: duplicate order rows"
+    },
+    {
+      "classification": "expected_definition_difference",
+      "evidence": {
+        "role": "observed",
+        "rows": [
+          {
+            "line": 103,
+            "order_id": "test-1",
+            "reasons": [
+              "environment"
+            ]
+          },
+          {
+            "line": 104,
+            "order_id": "test-2",
+            "reasons": [
+              "environment"
+            ]
+          }
+        ]
+      },
+      "id": "F00006",
+      "next_check": "Check that completed/production and period filters reflect the intended decision.",
+      "rule": "PUR_EXCLUDED",
+      "severity": "info",
+      "subject": "observed: rows excluded by explicit scope"
+    },
+    {
+      "classification": "unexplained_variance",
+      "evidence": {
+        "order_id": "order-097",
+        "role": "reference",
+        "row": {
+          "amount": "100.00",
+          "line": 98,
+          "signature": [
+            "2026-09-01T12:00:00+00:00",
+            "100.00",
+            "USD"
+          ]
+        }
+      },
+      "id": "F00007",
+      "next_check": "Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.",
+      "rule": "PUR_MISSING",
+      "severity": "warning",
+      "subject": "order-097"
+    },
+    {
+      "classification": "unexplained_variance",
+      "evidence": {
+        "order_id": "order-098",
+        "role": "reference",
+        "row": {
+          "amount": "100.00",
+          "line": 99,
+          "signature": [
+            "2026-09-01T12:00:00+00:00",
+            "100.00",
+            "USD"
+          ]
+        }
+      },
+      "id": "F00008",
+      "next_check": "Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.",
+      "rule": "PUR_MISSING",
+      "severity": "warning",
+      "subject": "order-098"
+    },
+    {
+      "classification": "unexplained_variance",
+      "evidence": {
+        "order_id": "order-099",
+        "role": "reference",
+        "row": {
+          "amount": "100.00",
+          "line": 100,
+          "signature": [
+            "2026-09-01T12:00:00+00:00",
+            "100.00",
+            "USD"
+          ]
+        }
+      },
+      "id": "F00009",
+      "next_check": "Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.",
+      "rule": "PUR_MISSING",
+      "severity": "warning",
+      "subject": "order-099"
+    },
+    {
+      "classification": "unexplained_variance",
+      "evidence": {
+        "order_id": "order-100",
+        "role": "reference",
+        "row": {
+          "amount": "100.00",
+          "line": 101,
+          "signature": [
+            "2026-09-01T12:00:00+00:00",
+            "100.00",
+            "USD"
+          ]
+        }
+      },
+      "id": "F00010",
+      "next_check": "Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.",
+      "rule": "PUR_MISSING",
+      "severity": "warning",
+      "subject": "order-100"
+    },
+    {
+      "classification": "within_tolerance",
+      "evidence": {
+        "amounts_within_tolerance": 96,
+        "matched_ids": 96
+      },
+      "id": "F00011",
+      "next_check": "Matching IDs establish record overlap; they do not establish attribution or causal lift.",
+      "rule": "PUR_MATCHED",
+      "severity": "info",
+      "subject": "Orders with matching IDs"
+    }
+  ],
+  "input_sha256": {
+    "config.json": "d2429a9b52c9afc21a8d2be8155ba55da9d1b81ddc53be7845ebd31bd7cef704",
+    "observed.contract.json": "58dca42662181d1fea1e4d1ddf3f8d1f95f7554957bd1e1c928e9ab7df1d760d",
+    "observed.csv": "aafeca5381892207e65e73b9cb55294d99607be74f9536c8311e5e7e63461854",
+    "reference.contract.json": "a12aa3395699c90b275031ea63aca9ee1f67ad766ff18d5de0e460b65d13bdb0",
+    "reference.csv": "68e2bf451afbf7c320e2f03de44b940dfc7968c90c124ad71c013992b2b0dae0"
+  },
+  "limits": [
+    "Contracts are operator assertions, not independently verified source settings.",
+    "CSV exports only. No live connectors, identity inference, FX conversion or causal attribution.",
+    "A reference export is an asserted comparison baseline, not independently established ground truth."
+  ],
+  "run_id": "b4357bd9a65727260f077f85",
+  "schema_version": 1,
+  "summary": {
+    "amount_mismatches": 0,
+    "comparison_performed": true,
+    "matched_orders": 96,
+    "missing_orders": 4,
+    "observed": {
+      "conflicting_ids": 0,
+      "duplicate_extra_rows": 5,
+      "eligible_rows": 101,
+      "excluded_rows": 2,
+      "raw_rows": 103,
+      "valid_unique_orders": 96
+    },
+    "quarantined_ids": 0,
+    "reference": {
+      "conflicting_ids": 0,
+      "duplicate_extra_rows": 0,
+      "eligible_rows": 100,
+      "excluded_rows": 0,
+      "raw_rows": 100,
+      "valid_unique_orders": 100
+    },
+    "totals_partial": false,
+    "unexpected_orders": 0,
+    "valid_order_amount_totals": {
+      "observed": "9600.00",
+      "reference": "10000.00"
+    }
+  },
+  "tolerance": {
+    "absolute": "0.01",
+    "relative": "0"
+  },
+  "workflow": "purchases",
+  "workspace": "synthetic-purchases"
+}

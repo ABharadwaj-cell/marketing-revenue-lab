@@ -1,0 +1,4 @@
+period_start,period_end_exclusive,value,numerator,denominator
+2026-09-01,2026-09-02,100,,
+2026-09-02,2026-09-03,120,,
+2026-09-03,2026-09-04,0,,

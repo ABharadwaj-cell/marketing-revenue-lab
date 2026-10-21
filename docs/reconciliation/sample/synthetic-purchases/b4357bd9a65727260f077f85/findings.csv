@@ -1,0 +1,121 @@
+id,rule,classification,severity,subject,evidence,next_check
+F00001,PUR_DUPLICATE,confirmed_processing_defect,warning,observed: duplicate order rows,"{
+  ""extra_rows"": 1,
+  ""lines"": [
+    2,
+    98
+  ],
+  ""order_id"": ""order-001"",
+  ""role"": ""observed""
+}",Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.
+F00002,PUR_DUPLICATE,confirmed_processing_defect,warning,observed: duplicate order rows,"{
+  ""extra_rows"": 1,
+  ""lines"": [
+    3,
+    99
+  ],
+  ""order_id"": ""order-002"",
+  ""role"": ""observed""
+}",Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.
+F00003,PUR_DUPLICATE,confirmed_processing_defect,warning,observed: duplicate order rows,"{
+  ""extra_rows"": 1,
+  ""lines"": [
+    4,
+    100
+  ],
+  ""order_id"": ""order-003"",
+  ""role"": ""observed""
+}",Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.
+F00004,PUR_DUPLICATE,confirmed_processing_defect,warning,observed: duplicate order rows,"{
+  ""extra_rows"": 1,
+  ""lines"": [
+    5,
+    101
+  ],
+  ""order_id"": ""order-004"",
+  ""role"": ""observed""
+}",Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.
+F00005,PUR_DUPLICATE,confirmed_processing_defect,warning,observed: duplicate order rows,"{
+  ""extra_rows"": 1,
+  ""lines"": [
+    6,
+    102
+  ],
+  ""order_id"": ""order-005"",
+  ""role"": ""observed""
+}",Inspect export generation and event deduplication. The duplicate export rows are confirmed; their origin is unproven.
+F00006,PUR_EXCLUDED,expected_definition_difference,info,observed: rows excluded by explicit scope,"{
+  ""role"": ""observed"",
+  ""rows"": [
+    {
+      ""line"": 103,
+      ""order_id"": ""test-1"",
+      ""reasons"": [
+        ""environment""
+      ]
+    },
+    {
+      ""line"": 104,
+      ""order_id"": ""test-2"",
+      ""reasons"": [
+        ""environment""
+      ]
+    }
+  ]
+}",Check that completed/production and period filters reflect the intended decision.
+F00007,PUR_MISSING,unexplained_variance,warning,order-097,"{
+  ""order_id"": ""order-097"",
+  ""role"": ""reference"",
+  ""row"": {
+    ""amount"": ""100.00"",
+    ""line"": 98,
+    ""signature"": [
+      ""2026-09-01T12:00:00+00:00"",
+      ""100.00"",
+      ""USD""
+    ]
+  }
+}",Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.
+F00008,PUR_MISSING,unexplained_variance,warning,order-098,"{
+  ""order_id"": ""order-098"",
+  ""role"": ""reference"",
+  ""row"": {
+    ""amount"": ""100.00"",
+    ""line"": 99,
+    ""signature"": [
+      ""2026-09-01T12:00:00+00:00"",
+      ""100.00"",
+      ""USD""
+    ]
+  }
+}",Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.
+F00009,PUR_MISSING,unexplained_variance,warning,order-099,"{
+  ""order_id"": ""order-099"",
+  ""role"": ""reference"",
+  ""row"": {
+    ""amount"": ""100.00"",
+    ""line"": 100,
+    ""signature"": [
+      ""2026-09-01T12:00:00+00:00"",
+      ""100.00"",
+      ""USD""
+    ]
+  }
+}",Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.
+F00010,PUR_MISSING,unexplained_variance,warning,order-100,"{
+  ""order_id"": ""order-100"",
+  ""role"": ""reference"",
+  ""row"": {
+    ""amount"": ""100.00"",
+    ""line"": 101,
+    ""signature"": [
+      ""2026-09-01T12:00:00+00:00"",
+      ""100.00"",
+      ""USD""
+    ]
+  }
+}",Inspect the corresponding source order and tracking record. Missing from this export does not establish the cause.
+F00011,PUR_MATCHED,within_tolerance,info,Orders with matching IDs,"{
+  ""amounts_within_tolerance"": 96,
+  ""matched_ids"": 96
+}",Matching IDs establish record overlap; they do not establish attribution or causal lift.

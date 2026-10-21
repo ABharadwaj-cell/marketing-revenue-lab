@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reconciliation configuration v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "workspace",
+    "workflow",
+    "comparison",
+    "tolerance",
+    "reference",
+    "observed"
+  ],
+  "properties": {
+    "version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "workspace": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"
+    },
+    "workflow": {
+      "enum": [
+        "aggregate",
+        "purchases"
+      ]
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "rationale"
+      ],
+      "properties": {
+        "class": {
+          "enum": [
+            "equivalent_under_conditions",
+            "related_not_interchangeable",
+            "unsupported"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "pattern": "\\S"
+        }
+      }
+    },
+    "tolerance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "absolute",
+        "relative"
+      ],
+      "properties": {
+        "absolute": {
+          "type": "string",
+          "maxLength": 32,
+          "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$"
+        },
+        "relative": {
+          "type": "string",
+          "maxLength": 32,
+          "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$"
+        }
+      }
+    },
+    "reference": {
+      "$ref": "#/$defs/input"
+    },
+    "observed": {
+      "$ref": "#/$defs/input"
+    }
+  },
+  "$defs": {
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "csv"
+      ],
+      "properties": {
+        "contract": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path relative to bundle; runner checks containment."
+        },
+        "csv": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path relative to bundle; runner checks containment."
+        }
+      }
+    }
+  }
+}

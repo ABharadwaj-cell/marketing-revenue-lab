@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Serialized finding v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "rule",
+    "classification",
+    "severity",
+    "subject",
+    "evidence",
+    "next_check"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^F[0-9]{5,}$"
+    },
+    "rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "classification": {
+      "enum": [
+        "confirmed_processing_defect",
+        "expected_definition_difference",
+        "provisional_source_changing",
+        "unexplained_variance",
+        "not_comparable",
+        "within_tolerance"
+      ]
+    },
+    "severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error"
+      ]
+    },
+    "subject": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Rule-specific evidence. Serialized decimals are strings; CSV line references are integers."
+    },
+    "next_check": {
+      "type": "string"
+    }
+  }
+}
