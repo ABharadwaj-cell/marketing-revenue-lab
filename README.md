@@ -92,3 +92,10 @@ The calculation engine lives in `src/revenue.py`. The canonical synthetic datase
 Authorized CRM sandbox → account/contact/deal joins → source and touch provenance → funnel cohort analysis → sales handoff checks → Finance reconciliation → confidence and missing-data indicators → budget/forecast scenarios → integration with the universal Marketing OS.
 
 Related projects: [Market Intelligence MCP](https://github.com/ABharadwaj-cell/marketing-market-intelligence-mcp) and [Marketing Practice Radar](https://github.com/ABharadwaj-cell/marketing-practice-radar).
+
+
+## License, security and contributions
+
+Licensed under [MIT](LICENSE). Read the [security policy](SECURITY.md),
+[contribution guide](CONTRIBUTING.md) and [community conduct policy](CODE_OF_CONDUCT.md).
+Financial inputs reject NaN and infinite values; synthetic fixture outputs remain unchanged.

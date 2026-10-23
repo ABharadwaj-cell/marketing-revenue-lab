@@ -3,6 +3,7 @@
 No attribution model can prove incremental causal lift from marketing touchpoints.
 """
 import json
+import math
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -24,7 +25,7 @@ def validate(data):
         leads[lead["id"]]=lead
     channels=set(data["marketing_channels"])
     for channel,amount in data["channel_spend_usd"].items():
-        if channel not in channels or not isinstance(amount,(int,float)) or isinstance(amount,bool) or amount<0:
+        if channel not in channels or not isinstance(amount,(int,float)) or isinstance(amount,bool) or not math.isfinite(amount) or amount<0:
             raise ValueError("Invalid spend entry")
     for opp in data["opportunities"]:
         for key in ("id","lead_id","source_channel","touch_channels","sales_accepted","stage","value_usd","recognized_revenue_usd","created_at"):
@@ -39,7 +40,7 @@ def validate(data):
         if type(opp["sales_accepted"]) is not bool:raise ValueError("Acceptance must be bool")
         if (opp["stage"]=="unqualified") == opp["sales_accepted"]:raise ValueError("Unqualified stage must not be sales accepted")
         for f in ("value_usd","recognized_revenue_usd"):
-            if not isinstance(opp[f],(int,float)) or isinstance(opp[f],bool) or opp[f]<0:raise ValueError("Invalid financial amount")
+            if not isinstance(opp[f],(int,float)) or isinstance(opp[f],bool) or not math.isfinite(opp[f]) or opp[f]<0:raise ValueError("Invalid financial amount")
         if opp["stage"]!="closed_won" and opp["recognized_revenue_usd"]!=0:
             raise ValueError("Non-won opportunity records recognized revenue")
     return True
@@ -95,3 +96,4 @@ if __name__=="__main__":
       "marketing_sourced":metrics(data,attribution="sourced"),
       "marketing_influenced":metrics(data,attribution="influenced"),
       "by_channel":channel_breakdown(data)},indent=2))
+

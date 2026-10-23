@@ -10,6 +10,19 @@ class TestRevenue(unittest.TestCase):
     def setUp(self):
         self.data=load_data()
 
+    def test_reject_nonfinite_financial_values(self):
+        for value in (float("nan"), float("inf"), float("-inf")):
+            for field in ("value_usd", "recognized_revenue_usd"):
+                data=copy.deepcopy(self.data)
+                data["opportunities"][0][field]=value
+                with self.assertRaises(ValueError):
+                    validate(data)
+            data=copy.deepcopy(self.data)
+            channel=next(iter(data["channel_spend_usd"]))
+            data["channel_spend_usd"][channel]=value
+            with self.assertRaises(ValueError):
+                validate(data)
+
     def test_fixtures_valid(self):
         self.assertTrue(validate(self.data))
 
@@ -68,3 +81,4 @@ class TestRevenue(unittest.TestCase):
 
 if __name__=="__main__":
     unittest.main()
+
