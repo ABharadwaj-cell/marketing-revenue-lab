@@ -56,6 +56,14 @@ class TestRevenue(unittest.TestCase):
         self.assertEqual(x["closed_won_bookings_usd"],110000)
         self.assertEqual(x["recognized_revenue_usd"],40000)
 
+    def test_reject_malformed_touch_channels(self):
+        for touches in ("Organic Search", [], ["Organic Search", None], ["Organic Search", ""], {"Organic Search": True}):
+            with self.subTest(touches=touches):
+                data=copy.deepcopy(self.data)
+                data["opportunities"][0]["touch_channels"]=touches
+                with self.assertRaises(ValueError):
+                    validate(data)
+
     def test_reject_duplicate_opportunity(self):
         data=copy.deepcopy(self.data)
         data["opportunities"].append(data["opportunities"][0])
