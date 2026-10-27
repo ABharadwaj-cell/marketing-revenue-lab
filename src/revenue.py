@@ -34,6 +34,9 @@ def validate(data):
         opportunities.add(opp["id"])
         if opp["lead_id"] not in leads:raise ValueError("Opportunity lead not present")
         if opp["source_channel"]!=leads[opp["lead_id"]]["source_channel"]:raise ValueError("Lead and opportunity source mismatch")
+        touches=opp["touch_channels"]
+        if not isinstance(touches,list) or not touches or any(not isinstance(t,str) or not t.strip() for t in touches):
+            raise ValueError("Touch channels must be a non-empty list of channel names")
         if opp["source_channel"] not in opp["touch_channels"]:raise ValueError("Acquisition source must be in recorded touches")
         if len(set(opp["touch_channels"]))!=len(opp["touch_channels"]):raise ValueError("Duplicate touch")
         if opp["stage"] not in STAGES:raise ValueError("Unknown stage")
