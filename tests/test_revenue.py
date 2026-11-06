@@ -23,6 +23,24 @@ class TestRevenue(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate(data)
 
+    def test_reject_malformed_marketing_channel_catalog(self):
+        invalid_catalogs = (
+            ["Organic Search", "Organic Search"],
+            ["Organic Search", ""],
+            ["Organic Search", "   "],
+            ["Organic Search", None],
+            ["Organic Search", 123],
+            "Organic Search",
+            None,
+            {"Organic Search": True},
+        )
+        for catalog in invalid_catalogs:
+            with self.subTest(catalog=catalog):
+                data = copy.deepcopy(self.data)
+                data["marketing_channels"] = catalog
+                with self.assertRaisesRegex(ValueError, "Marketing channels"):
+                    validate(data)
+
     def test_fixtures_valid(self):
         self.assertTrue(validate(self.data))
 
