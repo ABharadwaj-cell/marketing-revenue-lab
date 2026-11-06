@@ -23,7 +23,12 @@ def validate(data):
         if lead.get("id") in leads: raise ValueError("Duplicate lead")
         if not lead.get("id") or not lead.get("source_channel"):raise ValueError("Incomplete lead")
         leads[lead["id"]]=lead
-    channels=set(data["marketing_channels"])
+    channel_names=data["marketing_channels"]
+    if (not isinstance(channel_names,list) or
+            any(not isinstance(name,str) or not name.strip() for name in channel_names) or
+            len(set(channel_names))!=len(channel_names)):
+        raise ValueError("Marketing channels must be unique non-empty strings")
+    channels=set(channel_names)
     for channel,amount in data["channel_spend_usd"].items():
         if channel not in channels or not isinstance(amount,(int,float)) or isinstance(amount,bool) or not math.isfinite(amount) or amount<0:
             raise ValueError("Invalid spend entry")
