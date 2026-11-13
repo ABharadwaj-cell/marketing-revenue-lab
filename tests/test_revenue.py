@@ -74,6 +74,20 @@ class TestRevenue(unittest.TestCase):
     def test_reject_invalid_attribution(self):
         with self.assertRaises(ValueError):metrics(self.data,attribution="last_touch")
 
+    def test_lead_conversion_counts_distinct_leads(self):
+        data=copy.deepcopy(self.data)
+        original=next(o for o in data["opportunities"] if o["sales_accepted"] and
+                      o["source_channel"] in data["marketing_channels"])
+        duplicate=copy.deepcopy(original)
+        duplicate["id"]="additional-opportunity-for-same-lead"
+        data["opportunities"].append(duplicate)
+        channel=original["source_channel"]
+        before=metrics(self.data,channel)
+        after=metrics(data,channel)
+        self.assertEqual(after["qualified_opportunities"],before["qualified_opportunities"]+1)
+        self.assertEqual(after["lead_to_accepted_opportunity_rate"],
+                         before["lead_to_accepted_opportunity_rate"])
+
     def test_distinct_ids_per_channel(self):
         for row in channel_breakdown(self.data).values():
             for result in row.values():

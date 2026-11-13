@@ -80,7 +80,7 @@ def metrics(data,channel=None,attribution="sourced"):
           "sourced_leads":len(src_leads),
           "marketing_spend_usd":spend,
           "cost_per_accepted_opportunity_usd":round(spend/count,2) if count else None,
-          "lead_to_accepted_opportunity_rate":round(count/len(src_leads),4) if src_leads else None
+          "lead_to_accepted_opportunity_rate":round(len({o["lead_id"] for o in selected})/len(src_leads),4) if src_leads else None
         })
     else:
         result["note"]="Influence is non-exclusive. Do not sum influenced amounts across channels or add to sourced."
